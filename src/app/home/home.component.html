@@ -1,0 +1,35 @@
+<div class="row m-5">
+   
+    <form class="mt-5 d-flex" role="search">
+        <input  [(ngModel)]="recipeName" name="productName" class="form-control me-2" type="search" placeholder="Search by name" aria-label="Search">
+       
+        <select  [(ngModel)]="filterData.mealType"  name="mealType" class="form-select me-2">
+            <option value="">All Meal Types</option>
+            <option value="Dinner">Dinner</option>
+            <option value="Lunch">Lunch</option>
+            <option value="Snack">Snack</option>
+
+
+            <!-- <option *ngFor="let mealType of getMealTypes()" [value]="mealType">{{ mealType }}</option> -->
+        </select>
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+    <h1 class="text-center mt-2">All Recipes</h1>
+    <div class="card p-3 mt-5 me-1" *ngFor="let recipe of recipeList | filter: { mealType: filterData } | paginate: { itemsPerPage: 8, currentPage: p }|recipesearch :recipeName :'name'|recipesearch: cuisineName:'cuisine' ">
+
+        <h5 class="card-title text-center fw-bold"><i>{{ recipe.name }}</i></h5>
+
+      <a routerLink="single/{{recipe.id}}" >  <img [src]="recipe.image" class="img-fluid card-img-top" alt="..."></a>
+
+        <div class="card-body">
+          
+           
+            <h5>Cuisine:{{recipe.cuisine}}</h5>
+            <h6>Meal Type:{{recipe.mealType}}</h6>
+        </div>
+    </div>
+
+    <div class="text-center"> <pagination-controls (pageChange)="p = $event"></pagination-controls></div>
+
+</div>
+

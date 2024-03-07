@@ -1,0 +1,31 @@
+<div class="container mt-5"  >
+    <div class="row">
+        <div class="col-lg-6  ">
+            <img class="w-75 h-50 mt-5" [src]="singleRecipe.image"  alt="">
+        </div>
+    
+        <div class="col-lg-6 mt-5 ">
+            <h1><i>{{singleRecipe.name}}</i></h1>
+            <h5>Preparation Time:{{singleRecipe.prepTimeMinutes}}Minutes</h5>
+            <p>Meal Type:{{singleRecipe.mealType}}</p>
+            <h5 class="card-title">Ingredients</h5>
+            <ol>
+                <li *ngFor="let ingredient of singleRecipe.ingredients">{{ ingredient }}</li>
+            </ol>
+            <h5>Instructions</h5>
+            <ol>
+                <li *ngFor="let instruction of singleRecipe.instructions">{{ instruction }}</li>
+            </ol>
+            <div class="accordion-body">
+                <hr />
+                <div>
+                   
+                    <p>Rating:
+                        <span [ngClass]="singleRecipe.rating>=4?'c1':singleRecipe.rating>=3?'c3':'c2'">{{singleRecipe.rating}}
+                            <i class="fa-solid fa-star" ></i></span>
+                    </p>
+                </div>
+            </div>
+          
+    </div>
+</div>
