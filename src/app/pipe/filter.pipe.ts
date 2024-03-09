@@ -4,26 +4,18 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'filter'
 })
 export class FilterPipe implements PipeTransform {
-  transform(allRecipe: any[], filterData: any): any {
-    console.log("Filter Data:", filterData);
 
-    if (!allRecipe) {
-        console.log("No recipes available.");
-        return [];
+  transform(allRecipeArray:any[],filterStatus:string): any {
+    
+    if(!allRecipeArray || !filterStatus){
+      return allRecipeArray
     }
+    else{
 
-    // Filter by meal type if filterData is provided
-    if (filterData && filterData.mealType) {
-        const filteredRecipes = allRecipe.filter(item => {
-            console.log("Item Meal Type:", item.mealType);
-            return item.mealType === filterData.mealType;
-        });
-        console.log("Filtered Recipes:", filteredRecipes);
-        return filteredRecipes;
-    } else {
-        console.log("No meal type filter applied.");
-        return allRecipe;
+      return allRecipeArray.filter((item:any)=>item.mealType==filterStatus)
+      
+ 
     }
-}
-
+  }
+ 
 }

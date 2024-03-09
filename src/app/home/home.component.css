@@ -5,4 +5,11 @@ img{
 
 .card{
     width: 330px;
+
 }
+
+
+  .card:hover {
+    transform: scale(1.1); /* Adjust the scale factor as needed */
+    transition: transform 0.3s ease-in-out;
+  }

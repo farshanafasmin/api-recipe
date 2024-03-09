@@ -2,7 +2,18 @@
     background-color: antiquewhite;
 }
 
-span{
-    font-style: 30px;
+.navbar-brand {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  span{
+    font-size: 20px;
     font-weight: bold;
-}
+    color: rgb(228, 21, 111);
+  }

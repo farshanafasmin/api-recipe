@@ -1,21 +1,23 @@
 <div class="row m-5">
    
     <form class="mt-5 d-flex" role="search">
-        <input  [(ngModel)]="recipeName" name="productName" class="form-control me-2" type="search" placeholder="Search by name" aria-label="Search">
+        <input  [(ngModel)]="recipeName" name="productName" class="form-control me-2" type="search" placeholder="Search by recipe name" aria-label="Search">
        
-        <select  [(ngModel)]="filterData.mealType"  name="mealType" class="form-select me-2">
-            <option value="">All Meal Types</option>
-            <option value="Dinner">Dinner</option>
-            <option value="Lunch">Lunch</option>
-            <option value="Snack">Snack</option>
-
-
-            <!-- <option *ngFor="let mealType of getMealTypes()" [value]="mealType">{{ mealType }}</option> -->
-        </select>
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <div class="dropdown d-flex   justify-content-center  ">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Filter
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><button (click)="changeFilterData('Lunch')" class="dropdown-item active" href="#">Lunch</button></li>
+                <li><button (click)="changeFilterData('Dinner')" class="dropdown-item inactive" href="#">Dinner</button></li>
+                <li><button (click)="changeFilterData('Dessert')" class="dropdown-item inactive" href="#">Dessert</button></li>
+                <li><button (click)="changeFilterData('')" class="dropdown-item filter" href="#">Remove Filter</button></li>
+            </ul>
+        </div>
     </form>
     <h1 class="text-center mt-2">All Recipes</h1>
-    <div class="card p-3 mt-5 me-1" *ngFor="let recipe of recipeList | filter: { mealType: filterData } | paginate: { itemsPerPage: 8, currentPage: p }|recipesearch :recipeName :'name'|recipesearch: cuisineName:'cuisine' ">
+    <div class="card p-3 mt-5 me-3 ms-2" *ngFor="let recipe of recipeList | filter: filterData | paginate: { itemsPerPage: 8, currentPage: p }|recipesearch :recipeName :'name'|recipesearch: cuisineName:'cuisine' ">
 
         <h5 class="card-title text-center fw-bold"><i>{{ recipe.name }}</i></h5>
 
@@ -28,8 +30,9 @@
             <h6>Meal Type:{{recipe.mealType}}</h6>
         </div>
     </div>
+    
 
-    <div class="text-center"> <pagination-controls (pageChange)="p = $event"></pagination-controls></div>
+    <div class="text-center mt-5"> <pagination-controls (pageChange)="p = $event"></pagination-controls></div>
 
 </div>
 

@@ -28,28 +28,9 @@ export class HomeComponent implements OnInit {
 
 }
 
-getMealTypes(): string[] {
-  const mealTypesSet = new Set<string>();
-  this.recipeList.forEach(recipe => {
-      mealTypesSet.add(recipe.mealType);
-  });
-  return Array.from(mealTypesSet);
+changeFilterData(data: any) {
+  this.filterData = data
 }
-
-get pagedRecipeList() {
-  return this.recipeList.slice((this.p - 1) * 10, this.p * 10);
-}
-
-
-
-getCuisines(): string[] {
-    const cuisinesSet = new Set<string>();
-    this.recipeList.forEach(recipe => {
-        cuisinesSet.add(recipe.cuisine);
-    });
-    return Array.from(cuisinesSet);
-}
-
 }
 
 
